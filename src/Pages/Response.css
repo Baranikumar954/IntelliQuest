@@ -1,0 +1,75 @@
+/* General container */
+.response-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #F0F2F5;
+  }
+  
+  /* Main Heading */
+  .response-container h1 {
+    color: #FFD700; /* Royal Gold */
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #FFD700;
+    padding-bottom: 10px;
+  }
+  
+  /* Strong Text (used for section headers) */
+  .response-container strong {
+    color: #AAB1C4;
+    font-size: 1.2rem;
+  }
+  
+  /* Ordered and Unordered Lists */
+  .response-container ul,
+  .response-container ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+  
+  .response-container li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #D6D8E0;
+  }
+  
+  /* Paragraphs */
+  .response-container p {
+    margin-bottom: 1rem;
+    color: #C8CBD8;
+    line-height: 1.7;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .response-container {
+      padding: 15px;
+    }
+  
+    .response-container h1 {
+      font-size: 1.6rem;
+    }
+  
+    .response-container strong {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Highlighted Questions */
+  .response-container li::marker {
+    color: #FFD700;
+  }
+  
+  /* Inline code look if needed later */
+  .response-container code {
+    background-color: #1A1F3D;
+    color: #FFD700;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  

@@ -1,0 +1,128 @@
+/* General Styles */
+body {
+    background-color: #0A0F29; /* Midnight Navy */
+    color: #F0F2F5; /* Platinum White */
+    font-family: 'Roboto', sans-serif; /* Modern Font */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Form Container */
+  .getResume {
+    background-color: #1C1F2A; /* Rich Charcoal */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin: 50px auto;
+    max-width: 600px;
+    transition: all 0.3s ease;
+  }
+  
+  .getResume:hover {
+    transform: scale(1.02);
+  }
+  
+  label {
+    font-size: 1.2rem;
+    color:  #FFD700;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  label:hover {
+    color: #ff680b; /* Royal Gold */
+  }
+  
+  input[type="file"],
+  select,
+  button {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: 1px solid #AAB1C4; /* Slate Gray */
+    background-color: #1C1F2A; /* Rich Charcoal */
+    color: #F0F2F5; /* Platinum White */
+    font-size: 1.1rem;
+    outline: none;
+    transition: border 0.3s ease, background-color 0.3s ease;
+  }
+  
+  input[type="file"]:focus,
+  select:focus,
+  button:hover {
+    border-color: #00FFD1; /* Electric Teal */
+    background-color: #a6d0ca; /* Electric Teal */
+    color: #0A0F29; /* Midnight Navy */
+  }
+  
+  button {
+    background-color: #00FFD1; /* Electric Teal */
+    color: #0A0F29; /* Midnight Navy (text color) */
+    font-weight: bold;
+    padding: 14px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 255, 209, 0.3); /* Subtle glow */
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #FFD700; /* Royal Gold */
+    color: #0A0F29; /* Midnight Navy */
+  }
+  
+  button:disabled {
+    background-color: #AAB1C4; /* Slate Gray */
+    cursor: not-allowed;
+  }
+  
+  .errorMessage {
+    color: #FF6F61; /* Soft Red */
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  /* Loading State */
+  p[style*="color: blue"] {
+    color: #00FFD1; /* Electric Teal */
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .getResume {
+      padding: 20px;
+      margin: 20px;
+      max-width: 90%;
+    }
+  
+    label {
+      font-size: 1rem;
+    }
+  
+    input[type="file"],
+    select,
+    button {
+      font-size: 1rem;
+    }
+  
+    p {
+      font-size: 0.9rem;
+    }
+  }
+  
+ 
+  
+  /* Utility Classes */
+  .hidden {
+    display: none;
+  }
+  

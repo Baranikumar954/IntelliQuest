@@ -1,0 +1,96 @@
+/* Modern Premium Footer Styles */
+footer {
+    display: flex; /* Added */
+    flex-direction: column; /* For vertical stacking */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #0A0F29;
+    color: #F0F2F5;
+    padding: 30px 0px;
+    text-align: center;
+    border-top: 3px solid #00FFD1;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.25);
+  }
+  
+  
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* optional but good for vertical alignment */
+    width: 100%; /* ensure it spans full width */
+    max-width: 100%;
+    margin: 0 auto; /* center the container */
+    gap: 25px;
+  }
+  
+  
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* optional: to limit width and center nicely */
+    margin: 0 auto;
+  }
+  
+  
+  .footer-links a {
+    color: #AAB1C4; /* Slate Gray */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    padding: 6px 10px;
+  }
+  
+  .footer-links a::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0%;
+    background-color: #00FFD1; /* Aqua Accent */
+    transition: width 0.3s ease;
+    margin-top: 5px;
+  }
+  
+  .footer-links a:hover {
+    color: #00FFD1;
+  }
+  
+  .footer-links a:hover::after {
+    width: 100%;
+  }
+  
+  .footer-divider {
+    width: 60%;
+    height: 1px;
+    background-color: #1c2341;
+    margin: 10px 0;
+  }
+  
+  .footer-info {
+    color: #AAB1C4;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .footer-links {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .footer-container {
+      padding: 10px 0;
+    }
+  
+    .footer-divider {
+      width: 80%;
+    }
+  }
+  
