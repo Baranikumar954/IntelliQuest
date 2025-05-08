@@ -1,0 +1,96 @@
+.QuestionPage {
+  margin: 0px;
+  width: 100%;
+  /* min-height: 100vh; */
+  background: #f4f8fb;
+  /* padding: 40px 20px; */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.getResume {
+  background: #ffffff;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.getResume label {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.getResume input[type="file"],
+.getResume select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: #f9f9f9;
+  font-size: 14px;
+}
+
+.getResume button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #00FFD1;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.getResume button:hover {
+  background-color: #00e6ba;
+}
+
+.errorMessage {
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.form-icon {
+  width: 20px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.getResume p {
+  font-size: 13px;
+  color: #666;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .getResume {
+    padding: 20px;
+    margin: 20px;
+    max-width: 90%;
+  }
+  .form-icon {
+    width: 18px;
+  }
+  label {
+    font-size: 1rem;
+  }
+
+  input[type="file"],
+  select,
+  button {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+

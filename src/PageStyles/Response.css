@@ -1,0 +1,170 @@
+/* General container */
+.responsePage{
+  margin:0px;
+  width: 100vw;
+}
+.response-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+  }
+  
+  /* Main Heading */
+  .response-container h1 {
+    color: #004cff; /* Royal Gold */
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #c70000;
+    padding-bottom: 10px;
+  }
+  
+  /* Strong Text (used for section headers) */
+  .response-container strong {
+    color: #131313;
+    font-size: 1.2rem;
+  }
+  
+  /* Ordered and Unordered Lists */
+  .response-container ul,
+  .response-container ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+  }
+  
+  .response-container li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: #0a153f;
+  }
+  
+  /* Paragraphs */
+  .response-container p {
+    margin-bottom: 1rem;
+    color: #1c2759;
+    line-height: 1.7;
+  }
+  
+  .btn-feedback{
+    width: 26%;
+    background-color: #2563eb; /* Blue-600 */
+    color: #ffffff;
+    font-weight: 600;
+    padding: 14px 14px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); /* Soft blue glow */
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  .btn-feedback:hover{
+    background-color: #1d4ed8; /* Blue-700 */
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  }
+  .practice-form {
+    background-color: #f9fbff;
+    border: 2px solid #dce6f1;
+    padding: 20px;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease-in-out;
+}
+
+.practice-form:hover {
+    transform: scale(1.01);
+}
+
+.practice-form h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.practice-form label {
+    font-weight: 600;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.practice-input {
+    width: 97%;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-color: #6a85ff;
+    border-radius: 6px;
+    resize: none;
+    transition: border-color 0.3s ease;
+}
+
+.practice-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.btn-practice , .btn-clear{
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-practice:hover ,.btn-clear:hover{
+    background-color: #0056b3;
+}
+
+.btn-practice:active ,.btn-clear:active{
+    transform: scale(0.98);
+}
+
+.corrected-box {
+    background-color: #eef5ff;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid #007bff;
+    white-space: pre-wrap;
+}
+
+
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .response-container {
+      padding: 15px;
+    }
+  
+    .response-container h1 {
+      font-size: 1.6rem;
+    }
+  
+    .response-container strong {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Highlighted Questions */
+  .response-container li::marker {
+    color: #ff0000;
+  }
+  
+  /* Inline code look if needed later */
+  .response-container code {
+    background-color: #1A1F3D;
+    color: #FFD700;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  

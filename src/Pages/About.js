@@ -1,10 +1,10 @@
 import React from 'react'
 import { Header } from '../Components/Header'
 import { Footer } from '../Components/Footer'
-import './About.css';
+import '../PageStyles/About.css';
 export const About = () => {
   return (
-    <div>
+    <div class='aboutAll'>
         <Header/>
         <div class='aboutPage'>
             <h2>About IntelliQuest 🎯</h2>

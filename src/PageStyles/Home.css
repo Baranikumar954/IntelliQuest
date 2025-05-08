@@ -1,0 +1,173 @@
+/* ========== Home Page Main Container ========== */
+.homePage {
+  color: #1e293b; /* Slate-800 text */
+  margin: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+  text-align: center;
+  background-color: #f8fafc; /* Light Gray-Blue */
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* ========== Content Container ========== */
+.homeContainer {
+  max-width: 1000px;
+  background-color: #ffffff; /* White */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+/* ========== Headings ========== */
+.homeContainer h1,
+.homeContainer h2,
+.homeContainer h3,
+.homeContainer h4 {
+  color: #1e3a8a; /* Indigo-900 */
+  margin-bottom: 16px;
+}
+
+.homeContainer h1 {
+  font-size: 36px;
+  color: #0f172a; /* Slate-900 */
+}
+
+.homeContainer h2 {
+  font-size: 28px;
+  color: #2563eb; /* Blue-600 */
+}
+
+.homeContainer h3 {
+  font-size: 22px;
+  color: #475569; /* Slate-600 */
+}
+
+.homeContainer h4 {
+  font-size: 20px;
+  color: #64748b; /* Slate-500 */
+}
+
+/* ========== Paragraphs ========== */
+.homeContainer p {
+  font-size: 18px;
+  color: #334155; /* Slate-700 */
+  line-height: 1.6;
+}
+
+/* ========== Lists ========== */
+.homeContainer ul,
+.homeContainer ol {
+  text-align: left;
+  margin-top: 20px;
+  padding-left: 20px;
+  color: #475569; /* Slate-600 */
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.homeContainer li {
+  margin-bottom: 10px;
+}
+
+
+/* ========== Main Call-To-Action Button ========== */
+.homePage button {
+  width: 30%;
+  background-color: #2563eb; /* Blue-600 */
+  color: #ffffff;
+  font-weight: 600;
+  padding: 14px 14px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); /* Soft blue glow */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.homePage button:hover {
+  background-color: #1d4ed8; /* Blue-700 */
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35); /* Brighter glow */
+}
+.how-it-works {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.how-it-works h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.steps-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+
+.step {
+  max-width: 250px;
+  text-align: center;
+  flex: 1 1 200px;
+}
+
+.step img {
+  width: 100px;
+  height: 100px;
+}
+
+.step p {
+  margin: 10px 0;
+  color: #333;
+}
+
+.step .desc {
+  font-size: 14px;
+  color: #666;
+}
+
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .homeContainer {
+    padding: 20px;
+  }
+
+  .homeContainer h1 {
+    font-size: 28px;
+  }
+
+  .homeContainer h2 {
+    font-size: 22px;
+  }
+
+  .homeContainer p,
+  .homeContainer li {
+    font-size: 16px;
+  }
+
+  .homePage button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .step {
+    width: 90%;
+    max-width: none;
+  }
+}

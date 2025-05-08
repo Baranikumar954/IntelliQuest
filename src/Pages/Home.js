@@ -4,7 +4,7 @@ import { Footer } from '../Components/Footer';
 import { Outlet, useNavigate } from 'react-router-dom';
 import {useContext} from 'react';
 import DataContext from '../Context/DataProvider';
-import './Home.css';
+import '../PageStyles/Home.css';
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -21,21 +21,38 @@ export const Home = () => {
           
           <h2>Why Choose IntelliQuest?</h2>
           <ul>
-            <li style={{display:'flexStart'}}>✅ Personalized Question Bank – Get interview questions tailored to your experience and job role.</li>
-            <li style={{display:'flexStart'}}>✅ Company-Specific Insights – Select a company to receive relevant questions matching their hiring trends.</li>
-            <li style={{display:'flexStart'}}>✅ Resume-Based Analysis – No company selected? No worries! Our AI detects key skills and prepares the best questions for you.</li>
-            <li style={{display:'flexStart'}}>✅ Stay Ahead in Your Preparation – Improve your confidence and get interview-ready with structured practice.</li>
+            <li style={{display:'flexStart'}}>✅ Personalized Question Bank :Get interview questions tailored to your experience and job role.</li>
+            <li style={{display:'flexStart'}}>✅ Company-Specific Insights : Select a company to receive relevant questions matching their hiring trends.</li>
+            <li style={{display:'flexStart'}}>✅ Resume-Based Analysis : No company selected? No worries! Our AI detects key skills and prepares the best questions for you.</li>
+            <li style={{display:'flexStart'}}>✅ Stay Ahead in Your Preparation : Improve your confidence and get interview-ready with structured practice.</li>
           </ul>
           <br /><br />
-          <h2>🔍 How It Works?</h2>
-          <ol>
-            
-            <li>Upload your Resume</li>
-            <li>Choose your Role & Experience Level</li>
-            <li> Select a Company (Optional)</li>
-            <li>Get a Tailored Set of Interview Questions</li>
-          </ol>
-          <br /><br />
+          <section class="how-it-works">
+            <h2>🔍 How It Works?</h2>
+            <div class="steps-container">
+              <div class="step">
+                <img src="https://img.icons8.com/external-vectorslab-flat-vectorslab/100/external-File-Upload-files-and-folders-vectorslab-flat-vectorslab.png" alt="upload resume" />
+                <p><strong>Upload your Resume</strong></p>
+                <p class="desc">AI will generate interview questions using your resume and experience as key references.</p>
+              </div>
+              <div class="step">
+                <img src="https://img.icons8.com/stickers/100/choose.png" alt="choose role" />
+                <p><strong>Choose Role & Experience</strong></p>
+                <p class="desc">Select your preferred role and experience level to tailor the question complexity.</p>
+              </div>
+              <div class="step">
+                <img src="https://img.icons8.com/bubbles/100/company.png" alt="select company" />
+                <p><strong>Select a Company</strong></p>
+                <p class="desc">(Optional) Pick a company to align questions with their expectations.</p>
+              </div>
+              <div class="step">
+                <img src="https://img.icons8.com/stickers/100/test-results.png" alt="get questions" />
+                <p><strong>Get Tailored Questions</strong></p>
+                <p class="desc">Receive smart interview questions along with sample answers and strategies.</p>
+              </div>
+            </div>
+          </section>
+<br /><br />
           <h4>💡 Prepare Smarter. Perform Better. Land Your Dream Job.</h4>
           
         </div>

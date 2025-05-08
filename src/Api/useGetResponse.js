@@ -6,7 +6,9 @@ import DataContext from "../Context/DataProvider";
 GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js`;
 
 export const useGetResponse = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
+  const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
   const [error, setError] = useState("");
 
   const {cmpny,qnType,role,Experience} = useContext(DataContext);
@@ -62,19 +64,31 @@ export const useGetResponse = () => {
       contents: [
         {
           parts: [
-            {text: `Extracted Resume Text:\n${extractedText}\n\nGenerate ${
-                  qnType === "Both" ? "Technical and Non-Technical" 
-                  : qnType === "Non-Technical" ? "Non-Technical" 
-                  : "Technical"
-                } interview questions based on my resume as i am HR and role for ${role} and generate Questions for ${Experience} .`
+            {
+              text: `You are an HR interview expert.
+    
+    Here is the candidate's resume text:
+    ${extractedText}
+    
+    Your task:
+    Generate ${
+      qnType === "Both" ? "a mix of technical and non-technical"
+      : qnType === "Non-Technical" ? "non-technical (HR-related)"
+      : "technical"
+    } interview questions tailored to the candidate's resume for the role of **${role}**.
+    
+    Consider that the candidate has **${Experience}** of experience.
+    
+    Please generate 8–10 relevant interview questions.`
             }
           ]
         }
       ]
     };
+    
 
     try {
-      setLoading(true);
+      setLoading1(true);
       setError("");
       const response = await axios.post(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
@@ -87,9 +101,104 @@ export const useGetResponse = () => {
       setError("Failed to fetch data from the API.");
       return null;
     } finally {
-      setLoading(false);
+      setLoading1(false);
+    }
+  };
+  const getImprovedAnswer = async(question, userAnswer)=>{
+      if(!question || !userAnswer) return null;
+      const requestData = {
+        contents: [
+          {
+            parts: [
+              {
+                text: `Here's a candidate's answer to an interview question. Please improve it.
+
+                Question: ${question}
+                Answer: ${userAnswer}
+                
+                Respond with a corrected and improved answer only in the following JSON format — no extra explanation, no markdown, no text before or after — just plain JSON:
+                
+                {
+                  "answer": "Your improved and corrected response here."
+                }
+                `
+                
+              }
+            ]
+          }
+        ]
+      };
+      try{
+        setLoading3(true);
+        setError("");
+        const response = await axios.post(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+          requestData,
+          { headers: { "Content-Type": "application/json" } }
+        );
+        return response.data;
+      }catch(err){
+        setError("Failed to fetch Answer from the API");
+        return null;
+      }finally{
+        setLoading3(false);
+      }  
+  };
+
+  const generateSuggestions = async (extractedText) => {
+    if (!extractedText || !apiKey) return null;
+
+    const requestData = {
+      contents: [
+        {
+          parts: [
+            {
+              text: `You are an expert Applicant Tracking System (ATS) evaluator and resume coach.
+
+Given the resume and the job description below:
+
+1. Analyze the resume for ATS-friendliness.
+2. Score it out of 100 based on:
+   - Keyword match (40 points)
+   - Structure & formatting (20 points)
+   - Clarity & readability (20 points)
+   - Overall relevance to the job (20 points)
+3. List the strengths in the resume.
+4. List the weaknesses or red flags (e.g., use of tables, uncommon fonts, graphics).
+5. Give actionable improvement suggestions (e.g., missing keywords, format changes).
+6. Output in structured JSON format:
+   {
+     "ats_score": 87,
+     "strengths": [...],
+     "weaknesses": [...],
+     "suggestions": [...]
+   }
+
+Resume:${extractedText}`
+            }
+          ]
+        }
+      ]
+    };
+    
+
+    try {
+      setLoading2(true);
+      setError("");
+      const response = await axios.post(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+        requestData,
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      return response.data;
+    } catch (err) {
+      setError("Failed to fetch data from the API.");
+      return null;
+    } finally {
+      setLoading2(false);
     }
   };
 
-  return { loading, error, extractText, generateQuestions };
+  return { loading1,loading2,loading3, error, extractText, generateQuestions,generateSuggestions,getImprovedAnswer };
 };

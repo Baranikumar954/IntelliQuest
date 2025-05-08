@@ -1,22 +1,36 @@
-import React, { useState ,useContext} from 'react';
+import React, { useState ,useContext,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetResponse } from '../Api/useGetResponse';
 import DataContext from '../Context/DataProvider';
 import { Header } from '../Components/Header';
 import { Footer } from '../Components/Footer';
-import './Question.css';
+import '../PageStyles/Question.css';
+import { supabase } from '../Api/supabaseClient';
 
 export const Question = () => {
 
-  const { setResponseData ,cmpny,setCmpny,qnType,setQnType,role,setRole,Experience,setExperience} = useContext(DataContext);
-  const [isTaggled, setIsTaggled] = useState(false);
+  const { setResponseData ,cmpny,setCmpny,qnType,setQnType,role,setRole,Experience,setExperience,setResumeText} = useContext(DataContext);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        setUser(session.user); // Set user if logged in
+      } else {
+        console.error("User is not logged in.");
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   const navigate = useNavigate();
   const [resumeFile, setResumeFile] = useState(null);
   const [fileError, setFileError] = useState("");
   
   const [isProcessing, setIsProcessing] = useState(false); // ✅ Add loading state
 
-  const { loading, error, extractText, generateQuestions } = useGetResponse();
+  const { loading1, error, extractText, generateQuestions } = useGetResponse();
 
   const handleFileCheck = (e) => {
     const file = e.target.files[0];
@@ -39,7 +53,6 @@ export const Question = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsTaggled(true);
     setIsProcessing(true); // ✅ Start loading state
 
     if (fileError || !resumeFile) {
@@ -48,7 +61,7 @@ export const Question = () => {
       return;
     }
 
-    if (loading) {
+    if (loading1) {
       console.log("Loading...");
       return;
     }
@@ -62,14 +75,37 @@ export const Question = () => {
     try {
       const extractedText = await extractText(resumeFile);
       if (!extractedText) {
-        alert("Failed to extract text. Please try again.");
+        // alert("Failed to extract text. Please try again.");
         setIsProcessing(false);
         return;
       }
-
+      setResumeText(extractedText);
       const response = await generateQuestions(extractedText);
       if (response) {
         setResponseData(response);
+
+        const gmail = user?.email;
+        await supabase
+  .from('users')
+  .upsert([{ gmail_id: gmail }], { onConflict: ['gmail_id'] });
+        // ✅ INSERT INTO SUPABASE HERE
+
+        const { data, error: insertError } = await supabase
+          .from('interview_questions')
+          .insert([{
+            gmail_id: gmail, // 🔁 Replace with actual logged-in user's Gmail ID
+            company_name: cmpny,
+            role_name: role,
+            question_type: qnType,
+            experience: Experience,
+            response: JSON.stringify(response) // storing response as JSON string
+          }]);
+
+        if (insertError) {
+          console.error("Supabase insert error:", insertError);
+          // alert("Failed to save data to database.");
+        }
+
         navigate('/response', { state: { responseData: response } });
       } else {
         alert("Failed to fetch data. Please try again.");
@@ -83,17 +119,23 @@ export const Question = () => {
   };
 
   return (
-    <div>
-      <Header/>
+    <div className='QuestionPage'>
+      <Header />
       <form onSubmit={handleSubmit} className='getResume'>
-        <label htmlFor="resumeInput">Upload Your Resume</label>
-        <input type="file" name="resumeInput" id="resumeInput" onChange={handleFileCheck} required/>
-        <p>File must be less than 5MB</p>
+      <label htmlFor="resumeInput">
+        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Upload" className="form-icon" />
+        Upload Your Resume
+      </label>
+      <input type="file" name="resumeInput" id="resumeInput" onChange={handleFileCheck} required />
+      <p>File must be less than 5MB</p>
         {fileError && <p style={{ color: 'red' }} className='errorMessage'>{fileError}</p>}
 
         <br /><br />
 
-        <label htmlFor='companiesPreDef'>Select predefined companies</label>
+        <label htmlFor='companiesPreDef'>
+          <img src="https://cdn-icons-png.flaticon.com/512/2920/2920315.png" alt="Company" className="form-icon" />
+          Select predefined companies
+        </label>
         <select name="companiesPreDef" value={cmpny} id="companyList" onChange={(event) => setCmpny(event.target.value)}>
           <option value="zoho">Zoho</option>
           <option value="Amazon">Amazon</option>
@@ -106,45 +148,55 @@ export const Question = () => {
 
         <br /><br />
 
-        <label htmlFor="jobRole">Select Job Role</label>
-        <select name="jobRole" id="roleList" value={role} onChange={(event)=>setRole(event.target.value)}>
-            <option value=" Software Developer ">Software Developer</option>
-            <option value=" Software Engineer ">Software Engineer</option>
-            <option value=" Data Scientist ">Data Scinetist</option>
-            <option value=" Data Analyst ">Data Analyst</option>
-            <option value=" Software Testing ">Software Testing</option>
-            <option value=" Dev Ops ">Dev Ops</option>
-            <option value=" other ">others</option>
+        <label htmlFor="jobRole">
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Role" className="form-icon" />
+          Select Job Role
+        </label>
+        <select name="jobRole" id="roleList" value={role} onChange={(event) => setRole(event.target.value)}>
+          <option value="Software Developer">Software Developer</option>
+          <option value="Software Engineer">Software Engineer</option>
+          <option value="Data Scientist">Data Scientist</option>
+          <option value="Data Analyst">Data Analyst</option>
+          <option value="Software Testing">Software Testing</option>
+          <option value="Dev Ops">Dev Ops</option>
+          <option value="other">others</option>
         </select>
 
         <br /><br />
-
-        <label htmlFor="questionType">Select Question Type</label>
+        
+        <label htmlFor="questionType">
+          <img src="	https://cdn-icons-png.flaticon.com/512/2659/2659980.png" alt="Question Type" className="form-icon" />
+          Select Question Type
+        </label>
         <select name="questionType" value={qnType} id="questionTypeList" onChange={(event) => setQnType(event.target.value)}>
           <option value="Non-Technical">Non-Technical</option>
           <option value="Technical">Technical</option>
           <option value="Both">Both</option>
         </select>
 
-        <br/><br/>
+        <br /><br />
 
-        <label htmlFor="ExpOrFresh">Select Your Experience</label>
-        <select name="ExpOrFresh" id="experienceLevel" value={Experience} onChange={(event)=> setExperience(event.target.value)}>
+        <label htmlFor="ExpOrFresh">
+          <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png" alt="Experience" className="form-icon" />
+          Select Your Experience
+        </label>
+        <select name="ExpOrFresh" id="experienceLevel" value={Experience} onChange={(event) => setExperience(event.target.value)}>
           <option value="Freshers">Fresher</option>
           <option value="1 to 5 years Experience"> 1 to 5</option>
           <option value="5+ years Experience"> 5+ years</option>
         </select>
 
-        <br/><br/>
+        <br /><br />
 
-        {/* ✅ Show loading message when API is being processed */}
         {isProcessing ? (
-          <p style={{ color: "#00FFD1", fontWeight: "bold" }}>Processing... Please wait</p>
+          <p style={{ color: "#00FFD1", fontWeight: "bold" }}>
+            <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading" width="40" /> Processing... Please wait
+          </p>
         ) : (
-          <button type='submit' style={{backgroundColor:'#00FFD1'}}>Generate Question</button>
+          <button type='submit'>Generate Question</button>
         )}
       </form>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

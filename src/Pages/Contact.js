@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import './Contact.css';
+import '../PageStyles/Contact.css';
 import emailjs from "@emailjs/browser";
-import { toast, Toaster } from "react-hot-toast";
+import { toast} from "react-hot-toast";
 import { Header } from "../Components/Header";
 import { Footer } from '../Components/Footer';
 
@@ -54,7 +54,7 @@ export const Contact = () => {
   };
 
   return (
-    <div>
+    <div className="contactPage">
       <Header/>
       <div className="contact-container">
         <div className="contact-box">

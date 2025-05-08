@@ -1,0 +1,149 @@
+
+
+/* General About Page */
+.aboutAll {
+  margin: 0px;
+  width: 100vw;
+}
+
+.aboutPage {
+    background-color: #ffffff; /* Light background */
+    color: #1e293b; /* Dark text */
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.8;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 40px 60px;
+}
+
+/* Headings */
+.aboutPage h2 {
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+    color: #2563eb; /* Blue-600 */
+    text-align: center;
+    text-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}
+
+.aboutPage h3 {
+    font-size: 1.8rem;
+    color: #1d4ed8; /* Blue-700 */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 6px rgba(29, 78, 216, 0.3);
+}
+
+/* Paragraph */
+.aboutPage p {
+    font-size: 1.1rem;
+    color: #334155; /* Slate-700 */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 10px;
+    text-align: justify;
+    text-align-last: center;
+}
+
+/* List */
+.aboutPage ul {
+    list-style: none;
+    padding: 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.aboutPage li {
+    font-size: 1.05rem;
+    color: #334155; /* Slate-700 */
+    margin-bottom: 10px;
+    padding-left: 1.2em;
+    position: relative;
+    text-align: left;
+}
+
+/* Remove default dot and align emojis */
+.aboutPage li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+}
+
+/* Breaks */
+.aboutPage br {
+    display: block;
+    margin: 14px 0;
+}
+
+/* Scrollbar */
+.aboutPage::-webkit-scrollbar {
+    width: 8px;
+}
+
+.aboutPage::-webkit-scrollbar-thumb {
+    background: #2563eb; /* Blue-600 */
+    border-radius: 10px;
+}
+
+.aboutPage::-webkit-scrollbar-track {
+    background: #f3f4f6; /* Light Gray */
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 1024px) {
+    .aboutPage {
+        padding: 30px 40px;
+    }
+
+    .aboutPage h2 {
+        font-size: 2.2rem;
+    }
+
+    .aboutPage h3 {
+        font-size: 1.6rem;
+    }
+
+    .aboutPage p,
+    .aboutPage li {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .aboutPage {
+        padding: 25px 25px;
+    }
+
+    .aboutPage h2 {
+        font-size: 2rem;
+    }
+
+    .aboutPage h3 {
+        font-size: 1.4rem;
+    }
+
+    .aboutPage p,
+    .aboutPage li {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .aboutPage {
+        padding: 20px 15px;
+    }
+
+    .aboutPage h2 {
+        font-size: 1.6rem;
+    }
+
+    .aboutPage h3 {
+        font-size: 1.2rem;
+    }
+
+    .aboutPage p,
+    .aboutPage li {
+        font-size: 0.9rem;
+    }
+}
