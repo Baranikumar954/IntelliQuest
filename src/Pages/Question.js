@@ -15,7 +15,7 @@ export const Question = () => {
     const fetchUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        setUser(session.user); // Set user if logged in
+        setUser(session.user); 
       } else {
         console.error("User is not logged in.");
       }
@@ -88,17 +88,17 @@ export const Question = () => {
         await supabase
   .from('users')
   .upsert([{ gmail_id: gmail }], { onConflict: ['gmail_id'] });
-        // ✅ INSERT INTO SUPABASE HERE
+        
 
         const { data, error: insertError } = await supabase
           .from('interview_questions')
           .insert([{
-            gmail_id: gmail, // 🔁 Replace with actual logged-in user's Gmail ID
+            gmail_id: gmail, 
             company_name: cmpny,
             role_name: role,
             question_type: qnType,
             experience: Experience,
-            response: JSON.stringify(response) // storing response as JSON string
+            response: JSON.stringify(response)
           }]);
 
         if (insertError) {
